@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10002b">
+<title>XV Años · Kerly Sarahy Castillo Valencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0020;--g1:#10002b;--g2:#240046;--g3:#3c096c;--g4:#5a189a;--lilac:#c79bea;
+  --gold:#e3bf6a;--gold-hi:#fbeab0;--gold2:#a8802f;--cream:#fbf3dc;--text:#f6ecd0;
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--g1);font-family:'Cormorant Garamond',Georgia,serif;color:var(--text);-webkit-tap-highlight-color:transparent}
+body{background:
+  radial-gradient(120% 80% at 50% 0%,rgba(90,24,154,.55),transparent 60%),
+  radial-gradient(90% 70% at 50% 110%,rgba(60,9,108,.7),transparent 65%),
+  linear-gradient(180deg,var(--g2),var(--g1) 55%,var(--ink))}
+.script{font-family:'Great Vibes','Brush Script MT',cursive;font-weight:400}
+.caps{font-family:'Cinzel',Georgia,serif;text-transform:uppercase;letter-spacing:.28em}
+.gold{background:linear-gradient(110deg,var(--gold2) 0%,var(--gold) 22%,var(--gold-hi) 40%,var(--gold) 58%,var(--gold2) 80%,var(--gold) 100%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s ease-in-out infinite alternate;padding:0 .15em}
+@keyframes sheen{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+/* ambiente */
+.aura{position:fixed;inset:-20%;pointer-events:none;z-index:0}
+.aura::before,.aura::after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;
+  background:radial-gradient(circle,rgba(199,155,234,.2),transparent 60%);animation:drift 22s ease-in-out infinite alternate}
+.aura::before{top:0;left:-10%}
+.aura::after{bottom:0;right:-10%;background:radial-gradient(circle,rgba(227,191,106,.13),transparent 60%);animation-duration:28s;animation-direction:alternate-reverse}
+@keyframes drift{to{transform:translate(18vw,14vh) scale(1.15)}}
+#dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 50%,rgba(5,0,15,.7))}
+
+/* mariposas */
+.bf{position:absolute;width:44px;height:36px;pointer-events:none;opacity:.85;animation:float 9s ease-in-out infinite}
+.bf svg{width:100%;height:100%;animation:flap .7s ease-in-out infinite alternate;transform-origin:center;filter:drop-shadow(0 0 6px rgba(227,191,106,.5))}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.45)}}
+@keyframes float{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(18px,-26px) rotate(10deg)}}
+.bf.burst{position:fixed;z-index:12;opacity:0;animation:burst 2.8s var(--ease) forwards}
+@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}15%{opacity:1}75%{opacity:.9}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r)) scale(1.1)}}
+
+/* ===== entrada ===== */
+#intro{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(14px,3vh,26px);padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+#intro.gone{display:none}
+.kicker{font-size:clamp(.72rem,2.6vw,.9rem);color:var(--gold);text-align:center;opacity:0;animation:fadeIn 1.4s ease 1.4s forwards}
+.kicker .script{display:block;text-transform:none;letter-spacing:0;font-size:clamp(1.6rem,7vw,2.2rem);margin-top:4px}
+.hint{font-size:1.15rem;letter-spacing:.06em;color:var(--gold);text-align:center;opacity:0;animation:fadeIn 1s ease 2.2s forwards,pulse 2.4s ease-in-out 3.2s infinite}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+#intro.open .kicker,#intro.open .hint{animation:none;opacity:0;transition:opacity .5s}
+
+.stage{position:relative;transition:transform 1.4s var(--ease) .9s,opacity .8s}
+#intro.open .stage{transform:translateY(16%)}
+#intro.zoom .stage{transform:translateY(16%) scale(2.4);opacity:0;transition:transform 1.4s cubic-bezier(.7,0,.3,1),opacity 1s ease .3s}
+.arrive{opacity:0;animation:arrive 1.8s var(--ease) .2s forwards}
+@keyframes arrive{from{opacity:0;transform:translateY(50px) scale(.9)}to{opacity:1;transform:none}}
+
+.env{position:relative;display:block;border:0;padding:0;background:none;cursor:pointer;color:inherit;font:inherit;
+  width:min(84vw,calc(62vh*.72),460px);width:min(84vw,calc(62dvh*.72),460px);aspect-ratio:72/100;
+  perspective:1400px;container-type:inline-size;animation:hover 6s ease-in-out 2s infinite}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.env:focus-visible{outline:2px solid var(--gold);outline-offset:10px;border-radius:12px}
+.env>span{position:absolute;display:block}
+.e-back{inset:0;border-radius:12px;border:1.5px solid var(--gold);
+  background:repeating-linear-gradient(45deg,rgba(227,191,106,.07) 0 2px,transparent 2px 14px),linear-gradient(160deg,var(--g3),var(--g1));
+  box-shadow:0 40px 70px -15px rgba(0,0,0,.75),0 0 80px rgba(227,191,106,.16)}
+.e-card{left:7%;right:7%;top:5%;height:82%;z-index:1;border-radius:6px;background:linear-gradient(180deg,#fffaf0,var(--cream) 60%,#f3e4bd);
+  box-shadow:0 -6px 30px rgba(0,0,0,.25);transition:transform 1.3s var(--ease) 1.05s;text-align:center;color:var(--g3);padding-top:12%}
+.e-card::before{content:"";position:absolute;inset:5%;border:1px solid var(--gold2);border-radius:3px;opacity:.7}
+.e-card::after{content:"";position:absolute;inset:calc(5% + 5px);border:1px solid rgba(168,128,47,.35);border-radius:2px}
+.e-card svg{width:34cqw;height:17cqw;display:block;margin:0 auto}
+.e-card .c-xv{display:block;font-family:'Cinzel',serif;font-weight:600;font-size:17cqw;line-height:1;color:var(--g4);margin-top:2cqw}
+.e-card .c-name{display:block;font-size:10cqw;line-height:1.2;color:var(--g2)}
+.e-card .c-date{display:block;font-size:3.4cqw;margin-top:2cqw;color:var(--gold2)}
+#intro.open .e-card{transform:translateY(-58%)}
+
+.e-pocket{inset:0;z-index:2;border-radius:12px;clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);
+  background:radial-gradient(80% 50% at 50% 100%,rgba(90,24,154,.6),transparent 70%),linear-gradient(170deg,#2c0656,var(--g2) 45%,var(--g1))}
+.e-pocket svg.lines{position:absolute;inset:0;width:100%;height:100%}
+.e-name{position:absolute;left:0;right:0;bottom:9%;text-align:center}
+.e-name .script{display:block;font-size:12cqw;line-height:1.15}
+.e-name .caps{display:block;font-size:3.6cqw;color:var(--gold);margin-top:1cqw}
+
+.e-flap{left:0;right:0;top:0;height:56%;z-index:4;transform-origin:50% 0;border-radius:12px 12px 0 0;clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(180deg,var(--g4),var(--g3) 45%,#1a0236);transition:transform 1s var(--ease) .45s,z-index 0s .95s}
+.e-flap svg{position:absolute;inset:0;width:100%;height:100%}
+#intro.open .e-flap{transform:rotateX(180deg);z-index:0}
+
+.seal{left:50%;top:56%;z-index:5;width:24%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  display:grid;place-items:center;transition:transform .6s var(--ease),opacity .5s}
+.seal::before{content:"";position:absolute;inset:-8%;border-radius:47% 53% 49% 51%/52% 46% 54% 48%;
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 45%,var(--gold2) 85%);
+  box-shadow:0 6px 16px rgba(0,0,0,.55),inset 0 -3px 6px rgba(90,60,10,.5);animation:glow 2.4s ease-in-out infinite}
+.seal::after{content:"";position:absolute;inset:10%;border-radius:50%;border:1.5px solid rgba(90,60,10,.55);box-shadow:inset 0 0 0 3px rgba(251,234,176,.35)}
+.seal b{position:relative;z-index:1;font-family:'Great Vibes',cursive;font-weight:400;font-size:13cqw;line-height:1;color:var(--g2);text-shadow:0 1px 0 rgba(251,234,176,.6);margin-top:-6%}
+@keyframes glow{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.55),inset 0 -3px 6px rgba(90,60,10,.5),0 0 0 0 rgba(227,191,106,.5)}
+  50%{box-shadow:0 6px 16px rgba(0,0,0,.55),inset 0 -3px 6px rgba(90,60,10,.5),0 0 0 14px rgba(227,191,106,0)}}
+#intro.open .seal{transform:translate(-50%,-50%) scale(1.5) rotate(25deg);opacity:0}
+
+#flash{position:fixed;inset:0;z-index:20;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at 50% 45%,rgba(255,250,232,.95),rgba(243,217,140,.65) 28%,rgba(90,24,154,0) 72%)}
+#flash.go{animation:flash 1.7s ease-out forwards}
+@keyframes flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+
+/* ===== invitación ===== */
+#deck{position:fixed;inset:0;z-index:3;display:flex;flex-direction:column;overflow-x:hidden;overflow-y:auto;scroll-snap-type:y mandatory;
+  overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  opacity:0;transform:scale(1.06);pointer-events:none;transition:opacity 1.6s ease,transform 1.8s var(--ease)}
+body.in #deck{opacity:1;transform:none;pointer-events:auto}
+#deck::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;overflow:hidden;
+  padding:max(56px,env(safe-area-inset-top,0px)) 40px max(72px,env(safe-area-inset-bottom,0px))}
+.slide>*{position:relative;z-index:2}
+.slide>.frame,.slide>.bf{position:absolute}
+.frame{inset:14px;pointer-events:none;z-index:1;opacity:0;transform:scale(.97);transition:opacity 1.4s ease,transform 1.6s var(--ease)}
+.frame::before{content:"";position:absolute;inset:1px;border:1px solid rgba(227,191,106,.55);border-radius:18px}
+.frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(227,191,106,.22);border-radius:14px}
+.frame svg{position:absolute;width:72px;height:72px}
+.frame .tl{top:0;left:0}.frame .tr{top:0;right:0;transform:scaleX(-1)}
+.frame .bl{bottom:0;left:0;transform:scaleY(-1)}.frame .br{bottom:0;right:0;transform:scale(-1)}
+.slide.vis .frame{opacity:1;transform:none}
+
+.rv{opacity:0;transform:translateY(24px);filter:blur(5px);
+  transition:opacity 1.2s var(--ease),transform 1.2s var(--ease),filter 1.2s ease;transition-delay:calc(var(--d,0) * .15s + .2s)}
+.slide.vis .rv{opacity:1;transform:none;filter:none}
+
+.tiara{width:clamp(80px,22vw,120px);height:auto;filter:drop-shadow(0 0 10px rgba(227,191,106,.45))}
+.big{font-size:clamp(2.6rem,12vw,4.6rem);line-height:1.15}
+.xv{font-size:clamp(5rem,26vw,9.5rem);line-height:.95;font-weight:600;font-family:'Cinzel',serif;letter-spacing:.04em;
+  filter:drop-shadow(0 4px 18px rgba(227,191,106,.25))}
+.kick{font-size:clamp(.8rem,3vw,1rem);color:var(--gold);margin-bottom:6px}
+.sm{font-size:1.2rem;line-height:1.6;max-width:30ch}
+.lg{font-size:1.4rem;line-height:1.6;max-width:30ch;font-style:italic}
+.divider{width:min(240px,64vw);height:24px;margin:18px auto}
+.names{font-size:1.5rem;line-height:1.5}
+.surname{font-size:clamp(.85rem,3.4vw,1.05rem);color:var(--text)}
+.when{font-family:'Cinzel',serif;font-size:clamp(1.5rem,6.5vw,2rem);font-weight:600;line-height:1.35;letter-spacing:.06em}
+.when small{display:block;font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:1.15rem;letter-spacing:0;color:var(--gold);margin-top:2px}
+.pending{font-style:italic;opacity:.85;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:13px 28px;border-radius:40px;text-decoration:none;
+  font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;font-weight:600;color:var(--g1);
+  background:linear-gradient(135deg,var(--gold-hi),var(--gold) 45%,var(--gold2));box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 1px rgba(251,234,176,.5) inset;
+  transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 24px rgba(227,191,106,.45)}
+.btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:4px}
+.btn svg{width:18px;height:18px}
+
+.count{display:flex;gap:clamp(10px,3.5vw,18px);margin-top:26px}
+.count div{min-width:64px;padding:10px 6px 8px;border:1px solid rgba(227,191,106,.5);border-radius:10px;background:rgba(16,0,43,.45)}
+.count b{display:block;font-family:'Cinzel',serif;font-size:1.6rem;font-weight:600;color:var(--gold-hi);font-variant-numeric:tabular-nums}
+.count span{font-size:.95rem;font-style:italic;color:var(--gold)}
+
+.dots{position:fixed;right:max(12px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:5;
+  opacity:0;transition:opacity 1s 1s}
+.dots i{width:8px;height:8px;transform:rotate(45deg);border:1px solid var(--gold);transition:.4s var(--ease);cursor:pointer}
+.dots i.on{background:var(--gold);transform:rotate(45deg) scale(1.35);box-shadow:0 0 10px rgba(227,191,106,.7)}
+.swipe{position:fixed;left:0;right:0;text-align:center;bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:5;color:var(--gold);pointer-events:none;
+  opacity:0;transition:opacity 1s 1.4s}
+.swipe span{display:block;font-size:.7rem}
+.swipe svg{width:22px;height:22px;margin-top:4px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(7px)}}
+body.in .dots,body.in .swipe{opacity:1}
+.swipe.hide{opacity:0 !important;transition-delay:0s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01s !important;animation-iteration-count:1 !important;transition-duration:.01s !important;transition-delay:0s !important}
+  .rv{filter:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="bfly" viewBox="0 0 44 36">
+<path d="M22 18C14 4 3 2 2 9c-1 8 8 11 20 9z" fill="#e3bf6a"/>
+<path d="M22 18C30 4 41 2 42 9c1 8-8 11-20 9z" fill="#e3bf6a"/>
+<path d="M22 19C12 22 6 30 11 33c6 2 11-6 11-14z" fill="#c79bea"/>
+<path d="M22 19c10 3 16 11 11 14-6 2-11-6-11-14z" fill="#c79bea"/>
+<circle cx="11" cy="9" r="3" fill="#4b1470" opacity=".55"/><circle cx="33" cy="9" r="3" fill="#4b1470" opacity=".55"/>
+<rect x="21" y="9" width="2" height="20" rx="1" fill="#2a0a3d"/>
+</symbol>
+<symbol id="corner" viewBox="0 0 80 80">
+<g fill="none" stroke="#e3bf6a" stroke-width="1.3" stroke-linecap="round">
+<path d="M2 78V22Q2 2 22 2h56"/>
+<path d="M9 78V27Q9 9 27 9h51" stroke-opacity=".45"/>
+<path d="M17 17c14-6 30 2 28 16-1 9-12 12-17 6s0-13 7-12"/>
+<path d="M17 17c-6 14 2 30 16 28 9-1 12-12 6-17s-13 0-12 7"/>
+<path d="M46 15c7-4 15-3 21 2M15 46c-4 7-3 15 2 21" stroke-opacity=".7"/>
+</g>
+<circle cx="17" cy="17" r="2.6" fill="#e3bf6a"/>
+<path d="M62 9l4-4 4 4-4 4zM9 62l4 4-4 4-4-4z" fill="#e3bf6a"/>
+</symbol>
+<symbol id="divider" viewBox="0 0 240 24">
+<g fill="none" stroke="#e3bf6a" stroke-width="1" stroke-linecap="round">
+<path d="M6 12h82M152 12h82"/>
+<path d="M88 12c8-8 18-8 22 0-4 8-14 8-22 0zM152 12c-8-8-18-8-22 0 4 8 14 8 22 0z"/>
+</g>
+<path d="M120 3l7 9-7 9-7-9z" fill="#e3bf6a"/>
+<circle cx="4" cy="12" r="2" fill="#e3bf6a"/><circle cx="236" cy="12" r="2" fill="#e3bf6a"/>
+</symbol>
+<symbol id="tiara" viewBox="0 0 120 60">
+<g fill="none" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+<path d="M8 52Q60 38 112 52" stroke="currentColor"/>
+<path d="M12 49L22 28 36 41 60 12 84 41 98 28 108 49" stroke="currentColor"/>
+<path d="M36 41Q60 30 84 41" stroke="currentColor" stroke-opacity=".6"/>
+</g>
+<g fill="currentColor"><circle cx="22" cy="25" r="3.6"/><circle cx="98" cy="25" r="3.6"/><path d="M60 0l6 8-6 8-6-8z"/></g>
+<circle cx="60" cy="40" r="3.4" fill="#c79bea"/><circle cx="40" cy="46" r="2" fill="#c79bea"/><circle cx="80" cy="46" r="2" fill="#c79bea"/>
+</symbol>
+</defs></svg>
+
+<div class="aura" aria-hidden="true"></div>
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- Entrada -->
+<div id="intro">
+  <p class="kicker caps">Una invitación para usted<span class="script gold">Una noche de ensueño</span></p>
+  <div class="stage" id="stage">
+    <div class="arrive">
+      <button class="env" id="envBtn" aria-label="Abrir invitación">
+        <span class="e-back"></span>
+        <span class="e-card" aria-hidden="true">
+          <svg style="color:#a8802f"><use href="#tiara"/></svg>
+          <span class="c-xv">XV</span>
+          <span class="c-name script">Sarahy Castillo</span>
+          <span class="c-date caps">24 · Octubre</span>
+        </span>
+        <span class="e-pocket" aria-hidden="true">
+          <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 0L50 52L100 0" fill="none" stroke="#e3bf6a" stroke-width="1.2" vector-effect="non-scaling-stroke" opacity=".85"/>
+            <path d="M4 96L46 56M96 96L54 56" fill="none" stroke="#e3bf6a" stroke-width=".8" vector-effect="non-scaling-stroke" opacity=".25"/>
+          </svg>
+          <span class="e-name"><span class="script gold">Sarahy Castillo</span><span class="caps">Mis XV Años</span></span>
+        </span>
+        <span class="e-flap" aria-hidden="true">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 0L50 100L100 0" fill="none" stroke="#e3bf6a" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+            <path d="M10 4L50 84L90 4" fill="none" stroke="#e3bf6a" stroke-width=".8" vector-effect="non-scaling-stroke" opacity=".4"/>
+          </svg>
+        </span>
+        <span class="seal" aria-hidden="true"><b>K</b></span>
+      </button>
+    </div>
+  </div>
+  <p class="hint">Toque el sello para abrir su invitación</p>
+  <div class="bf" style="top:10%;left:10%"><svg><use href="#bfly"/></svg></div>
+  <div class="bf" style="bottom:12%;right:9%;animation-delay:-3s"><svg><use href="#bfly"/></svg></div>
+  <div class="bf" style="top:46%;right:6%;animation-delay:-6s;transform:scale(.7)"><svg><use href="#bfly"/></svg></div>
+</div>
+<div id="flash" aria-hidden="true"></div>
+
+<!-- Invitación -->
+<main id="deck" aria-label="Invitación XV años">
+
+  <section class="slide">
+    <div class="frame"><svg class="tl"><use href="#corner"/></svg><svg class="tr"><use href="#corner"/></svg><svg class="bl"><use href="#corner"/></svg><svg class="br"><use href="#corner"/></svg></div>
+    <div class="bf" style="top:9%;left:10%"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="top:16%;right:9%;animation-delay:-2s"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="bottom:14%;left:14%;animation-delay:-5s"><svg><use href="#bfly"/></svg></div>
+    <svg class="tiara rv" style="color:#e3bf6a;--d:0" viewBox="0 0 120 60"><use href="#tiara"/></svg>
+    <p class="kick caps rv" style="--d:1">Mis XV años</p>
+    <div class="xv gold rv" style="--d:2">XV</div>
+    <h1 class="script big gold rv" style="--d:3">Kerly Sarahy</h1>
+    <p class="surname caps rv" style="--d:4">Castillo Valencia</p>
+    <svg class="divider rv" style="--d:5"><use href="#divider"/></svg>
+    <p class="when rv" style="--d:6">24 de octubre</p>
+  </section>
+
+  <section class="slide">
+    <div class="frame"><svg class="tl"><use href="#corner"/></svg><svg class="tr"><use href="#corner"/></svg><svg class="bl"><use href="#corner"/></svg><svg class="br"><use href="#corner"/></svg></div>
+    <div class="bf" style="top:10%;right:12%"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="bottom:13%;left:10%;animation-delay:-4s"><svg><use href="#bfly"/></svg></div>
+    <p class="lg rv" style="--d:0">Con la bendición de Dios y el amor de sus padres</p>
+    <svg class="divider rv" style="--d:1"><use href="#divider"/></svg>
+    <p class="names rv" style="--d:2">José Luis Castillo Castillo<br><span class="script gold" style="font-size:1.8rem">y</span><br>Jessica Nelly Valencia Farías</p>
+    <svg class="divider rv" style="--d:3"><use href="#divider"/></svg>
+    <p class="script big gold rv" style="--d:4">Sarahy Castillo</p>
+    <p class="sm rv" style="--d:5">tiene el honor de invitarle a la celebración de sus XV años</p>
+  </section>
+
+  <section class="slide">
+    <div class="frame"><svg class="tl"><use href="#corner"/></svg><svg class="tr"><use href="#corner"/></svg><svg class="bl"><use href="#corner"/></svg><svg class="br"><use href="#corner"/></svg></div>
+    <div class="bf" style="top:12%;left:12%;animation-delay:-1s"><svg><use href="#bfly"/></svg></div>
+    <p class="kick caps rv" style="--d:0">Primer momento</p>
+    <h2 class="script big gold rv" style="--d:1">Ceremonia religiosa</h2>
+    <svg class="divider rv" style="--d:2"><use href="#divider"/></svg>
+    <p class="when rv" style="--d:3">24 de octubre<small>a las</small></p>
+    <p class="when rv" style="--d:4">17:00 h</p>
+    <p class="lg rv" style="margin-top:16px;--d:5">Iglesia Católica Nuestra Señora de Guadalupe<br>Los Pambiles</p>
+    <a class="btn rv" style="--d:6" href="https://maps.app.goo.gl/Z7JK7LD5okgp3jbA6" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Ver ubicación
+    </a>
+  </section>
+
+  <section class="slide">
+    <div class="frame"><svg class="tl"><use href="#corner"/></svg><svg class="tr"><use href="#corner"/></svg><svg class="bl"><use href="#corner"/></svg><svg class="br"><use href="#corner"/></svg></div>
+    <div class="bf" style="bottom:12%;right:11%;animation-delay:-6s"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="top:11%;left:11%;animation-delay:-2s"><svg><use href="#bfly"/></svg></div>
+    <p class="kick caps rv" style="--d:0">Gran celebración</p>
+    <h2 class="script big gold rv" style="--d:1">Recepción</h2>
+    <svg class="divider rv" style="--d:2"><use href="#divider"/></svg>
+    <p class="when rv" style="--d:3">24 de octubre<small>a las</small></p>
+    <p class="when rv" style="--d:4">19:00 h</p>
+    <p class="lg rv" style="margin-top:16px;--d:5">Urbanización María del Carmen,<br>Cooperativa de Taxis 11</p>
+    <a class="btn rv" style="--d:6" href="https://maps.app.goo.gl/gNpgmhGcPnNFQdHi7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Ver ubicación
+    </a>
+  </section>
+
+  <section class="slide">
+    <div class="frame"><svg class="tl"><use href="#corner"/></svg><svg class="tr"><use href="#corner"/></svg><svg class="bl"><use href="#corner"/></svg><svg class="br"><use href="#corner"/></svg></div>
+    <div class="bf" style="top:14%;right:14%"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="top:22%;left:9%;animation-delay:-3s"><svg><use href="#bfly"/></svg></div>
+    <div class="bf" style="bottom:15%;right:20%;animation-delay:-5s"><svg><use href="#bfly"/></svg></div>
+    <p class="lg rv" style="--d:0">Ceremonia religiosa y recepción el 24 de octubre.</p>
+    <svg class="divider rv" style="--d:1"><use href="#divider"/></svg>
+    <p class="script big gold rv" style="--d:2">Su presencia hará esta noche aún más especial</p>
+    <div class="count rv" id="count" style="--d:3" aria-label="Cuenta regresiva">
+      <div><b id="cd-d">00</b><span>días</span></div>
+      <div><b id="cd-h">00</b><span>horas</span></div>
+      <div><b id="cd-m">00</b><span>min</span></div>
+      <div><b id="cd-s">00</b><span>seg</span></div>
+    </div>
+    <p class="names caps rv" style="margin-top:22px;font-size:1rem;color:var(--gold);--d:4">Sarahy Castillo</p>
+  </section>
+
+</main>
+
+<div class="swipe" id="swipe" aria-hidden="true"><span class="caps">Deslice</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="dots" id="dots" aria-hidden="true"></div>
+
+<script>
+(function(){
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var intro=document.getElementById('intro'),btn=document.getElementById('envBtn'),flash=document.getElementById('flash'),
+    deck=document.getElementById('deck'),slides=deck.querySelectorAll('.slide'),dots=document.getElementById('dots'),sw=document.getElementById('swipe');
+
+/* ---- polvo dorado ---- */
+var cv=document.getElementById('dust'),cx=cv.getContext('2d'),P=[],S=[],W=0,H=0;
+function size(){var dpr=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+function mk(init){return{x:Math.random()*W,y:init?Math.random()*H:H+10,r:Math.random()*1.7+.4,vy:Math.random()*.35+.08,
+  vx:(Math.random()-.5)*.2,t:Math.random()*6.28,ts:Math.random()*.03+.01,gold:Math.random()<.75}}
+size();addEventListener('resize',size);
+var N=Math.round(Math.min(110,W*H/8000));for(var i=0;i<N;i++)P.push(mk(true));
+function dot(x,y,r,a,col){cx.globalAlpha=a*.18;cx.fillStyle=col;cx.beginPath();cx.arc(x,y,r*4,0,6.283);cx.fill();
+  cx.globalAlpha=a;cx.beginPath();cx.arc(x,y,r,0,6.283);cx.fill()}
+function tick(){
+  cx.clearRect(0,0,W,H);
+  for(var i=0;i<P.length;i++){var p=P[i];p.y-=p.vy;p.x+=p.vx+Math.sin(p.t)*.15;p.t+=p.ts;if(p.y<-10)P[i]=p=mk(false);
+    dot(p.x,p.y,p.r,.3+.7*Math.abs(Math.sin(p.t)),p.gold?'#f3d98c':'#d9b8f5')}
+  for(var j=S.length-1;j>=0;j--){var s=S[j];s.x+=s.vx;s.y+=s.vy;s.vx*=.97;s.vy=s.vy*.97+.02;s.l-=.012;
+    if(s.l<=0){S.splice(j,1);continue}dot(s.x,s.y,s.r,s.l,s.gold?'#fbeab0':'#e2c6fb')}
+  cx.globalAlpha=1;
+  if(!reduce)requestAnimationFrame(tick);
+}
+tick();
+function sparks(x,y){if(reduce)return;for(var i=0;i<90;i++){var a=Math.random()*6.283,v=Math.random()*7+1.5;
+  S.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,r:Math.random()*1.8+.6,l:1,gold:Math.random()<.8})}}
+
+/* ---- apertura del sobre ---- */
+function butterflies(x,y){if(reduce)return;for(var i=0;i<9;i++){var b=document.createElement('div'),a=-Math.PI/2+(i-4)*.38+(Math.random()-.5)*.3,
+  d=Math.max(W,H)*(.45+Math.random()*.25);b.className='bf burst';b.innerHTML='<svg><use href="#bfly"/></svg>';
+  b.style.left=x+'px';b.style.top=y+'px';b.style.setProperty('--dx',Math.cos(a)*d+'px');b.style.setProperty('--dy',Math.sin(a)*d+'px');
+  b.style.setProperty('--r',(Math.random()*60-30)+'deg');b.style.animationDelay=(1+Math.random()*.6)+'s';
+  document.body.appendChild(b);setTimeout(function(n){return function(){n.remove()}}(b),4800)}}
+var opened=false;
+btn.addEventListener('click',function(){
+  if(opened)return;opened=true;
+  var r=btn.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height*.56;
+  intro.classList.add('open');sparks(x,y);butterflies(x,y);
+  var k=reduce?.05:1;
+  setTimeout(function(){intro.classList.add('zoom');flash.classList.add('go');sparks(W/2,H*.45)},2400*k);
+  setTimeout(function(){document.body.classList.add('in');slides[0].classList.add('vis');deck.focus({preventScroll:true})},2750*k);
+  setTimeout(function(){intro.classList.add('gone')},4000*k);
+});
+
+/* ---- diapositivas ---- */
+deck.tabIndex=-1;
+slides.forEach(function(s,k){var d=document.createElement('i');d.addEventListener('click',function(){deck.scrollTo({top:k*deck.clientHeight,behavior:'smooth'})});dots.appendChild(d)});
+function upd(){var i=Math.round(deck.scrollTop/deck.clientHeight);
+  Array.prototype.forEach.call(dots.children,function(d,k){d.className=k===i?'on':''});
+  sw.classList.toggle('hide',i>=slides.length-1)}
+deck.addEventListener('scroll',upd,{passive:true});upd();
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&document.body.classList.contains('in'))e.target.classList.add('vis')})},{root:deck,threshold:.45});
+  slides.forEach(function(s){io.observe(s)});
+}else slides.forEach(function(s){s.classList.add('vis')});
+document.addEventListener('keydown',function(e){
+  if(!document.body.classList.contains('in'))return;
+  if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();deck.scrollBy({top:deck.clientHeight,behavior:'smooth'})}
+  if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();deck.scrollBy({top:-deck.clientHeight,behavior:'smooth'})}});
+
+/* ---- cuenta regresiva ---- */
+var now=new Date(),target=new Date(now.getFullYear(),9,24,17,0,0),cd=document.getElementById('count');
+if(now-target>864e5)cd.style.display='none';
+function pad(n){return(n<10?'0':'')+n}
+function cdTick(){var ms=Math.max(0,target-new Date()),s=Math.floor(ms/1000);
+  document.getElementById('cd-d').textContent=pad(Math.floor(s/86400));
+  document.getElementById('cd-h').textContent=pad(Math.floor(s%86400/3600));
+  document.getElementById('cd-m').textContent=pad(Math.floor(s%3600/60));
+  document.getElementById('cd-s').textContent=pad(s%60)}
+cdTick();setInterval(cdTick,1000);
+})();
+</script>
+</body>
+</html>
